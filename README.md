@@ -22,3 +22,14 @@ The goal is to use a different programming language for every problem:
     IN: scratchpad USE: dec03-factor
     IN: scratchpad main
 	```
+
+4. Nim
+    ```bash
+	$ nim c --opt:speed solution.nim && ./solution < input.txt
+	```
+	
+5. TypeScript
+    ```bash
+    $ tsc solution.ts && node solution.js < input.txt
+	```
+	
