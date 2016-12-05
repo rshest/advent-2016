@@ -30,6 +30,8 @@ The goal is to use a different programming language for every problem:
 	
 5. TypeScript
     ```bash
-    $ tsc solution.ts && node solution.js < input.txt
+    $ npm install @types/node
+    $ npm install crypto
+    $ tsc --lib es6 solution.ts && node solution.js < input.txt
 	```
 	

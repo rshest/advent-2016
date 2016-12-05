@@ -1,3 +1,7 @@
 nimcache
 nimsuggest.log
-/dec04-nim/*.exe
+*.exe
+/dec05-typescript/solution.js
+node_modules
+/dec06-julia/*.ipynb
+/dec06-julia/.ipynb_checkpoints/*.ipynb
