@@ -38,12 +38,10 @@ function computePassword2(keyPrefix: string, numLeadingZeros: number) : string {
     const hash = computeHash(keyPrefix, suffix);
     if (hash.indexOf(hashPrefix) == 0) {
       const pos = +hash[numLeadingZeros];
-      if (pos < PASSWORD_LEN) {
-        if (password[pos] == '?') {
-          nchar++;
-          password[pos] = hash[numLeadingZeros + 1];
-          console.log(password.join(''));
-        }
+      if (pos < PASSWORD_LEN && password[pos] == '?') {
+        nchar++;
+        password[pos] = hash[numLeadingZeros + 1];
+        console.log(password.join(''));
       }
     }
     suffix++;
