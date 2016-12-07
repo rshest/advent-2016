@@ -13,7 +13,7 @@ get_least_freq(x) = x[end].first
 get_str(m, fn) = mapslices(x -> x |> get_hist |> fn, m, [2]) |> join
 
 # read data
-file = length(ARGS) > 0 ? ARGS[1] : "input.txt"
+file = (length(ARGS) > 0) ? ARGS[1] : "input.txt"
 f = open(file);
 lines = readlines(f)
 
