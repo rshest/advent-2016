@@ -48,5 +48,11 @@ The goal is to use a different programming language for every problem:
 8. Lua
     ```bash
     $ lua5.1 solution.lua input.txt
+    ```
+
+9. Kotlin
+    ```bash
+    $ kotlinc -script solution.kts input.txt
+    ```
     
     

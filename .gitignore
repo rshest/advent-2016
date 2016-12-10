@@ -5,3 +5,4 @@ nimsuggest.log
 node_modules
 /dec06-julia/*.ipynb
 /dec06-julia/.ipynb_checkpoints/*.ipynb
+/dec09-kotlin/.idea
