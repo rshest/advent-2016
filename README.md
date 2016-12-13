@@ -55,4 +55,8 @@ The goal is to use a different programming language for every problem:
     $ kotlinc -script solution.kts input.txt
     ```
     
-    
+9. Elm
+    ```bash
+    $ elm-reactor
+    ```
+    Then, open http://localhost:8000/solution.elm in a browser.
