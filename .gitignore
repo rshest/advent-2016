@@ -3,9 +3,9 @@ nimsuggest.log
 *.exe
 /dec05-typescript/solution.js
 node_modules
-/dec06-julia/*.ipynb
-/dec06-julia/.ipynb_checkpoints/*.ipynb
-/dec09-kotlin/.idea
+*.ipynb
+.ipynb_checkpoints
 elm-stuff
 index.html
 .idea
+*.iml
