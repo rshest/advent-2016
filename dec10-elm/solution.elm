@@ -4,15 +4,12 @@ import Http exposing (..)
 import String exposing (..)
 import Regex exposing (..)
 
-
 -- boilerplate, to load inputs and show data
 inputFile: String
 inputFile = "./input.txt"
 
-
 type alias Model = String
 type Msg = Fetched String | Failed String
-
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -20,7 +17,6 @@ update msg model =
     Fetched str -> str
     Failed err -> err
   , Cmd.none)
-
 
 lines : String -> Cmd Msg
 lines fname =
@@ -30,7 +26,6 @@ lines fname =
     case res of
       Ok val -> Fetched val
       Err error -> Failed (toString error))
-
 
 view : Model -> Html Msg
 view str = solve str |> text
@@ -43,23 +38,19 @@ main =
       , subscriptions = \_ -> Sub.none
       }
 
-
 -- solution itself
 type Target 
   = Bot Int 
   | Output Int
-
 
 type Operation 
   = Init (Int, Target)
   | Give (Target, Target, Target)  
   | Error
 
-
 type alias OpList = List Operation
 type alias Node = (Target, Maybe Int, Maybe Int)
 type alias Network = List Node
-
 
 parseOp: String -> Operation
 parseOp str =
@@ -87,14 +78,12 @@ parseOp str =
       in Init (getInt p 0, Bot (getInt p 1))
     else Error
 
-
 --  yes, I have to write it myself as well, can you imagine? 
 getDistinct : List a -> List a 
 getDistinct lst = 
   case lst of
     x::xs -> x::(xs |> List.filter (\el -> el /= x) |> getDistinct)
     [] -> []
-
 
 initNetwork : OpList -> Network
 initNetwork ops = ops
@@ -106,7 +95,6 @@ initNetwork ops = ops
   |> getDistinct
   |> List.map (\t -> (t, Nothing, Nothing))
 
-
 getValues : Network -> Target -> (Maybe Int, Maybe Int)
 getValues network nodeId = 
   case network of
@@ -114,12 +102,10 @@ getValues network nodeId =
       if id == nodeId then (v1, v2) else getValues ns nodeId
     _ -> (Nothing, Nothing)
 
-
 getOutput : Node -> Maybe (Int, Int)
 getOutput node = case node of
   (Output id, Just val, _) -> Just (id, val)
   _ -> Nothing
-
 
 setValue : Maybe Int -> Node -> Maybe Node 
 setValue val node =
@@ -127,7 +113,6 @@ setValue val node =
   (id, Nothing, Nothing) -> Just (id, val, Nothing)
   (id, val1, Nothing) -> Just (id, val1, val)
   _ -> Just node
-
 
 attemptApplyToNode : Network -> Operation -> Node -> (Maybe Node)
 attemptApplyToNode network op node = 
@@ -144,7 +129,6 @@ attemptApplyToNode network op node =
       else Nothing
     _ -> Nothing
 
-
 attemptApply : Operation -> Network -> (Maybe Network)
 attemptApply op network = 
   let 
@@ -156,7 +140,6 @@ attemptApply op network =
   in
     if canNotApply then Nothing 
     else Just (List.map2 mergeEl network network1)
-
 
 evaluateNetwork : List Operation -> Network -> (List Operation, Network)
 evaluateNetwork ops network =
@@ -171,12 +154,10 @@ evaluateNetwork ops network =
     [] -> ([], network1)
     _ -> evaluateNetwork restOps network1
 
-
 cond1 : Node -> Maybe Int
 cond1 node = case node of
   (Bot x, Just 61, Just 17) -> Just x 
   _ -> Nothing
-
 
 cond2 : Network -> Int
 cond2 network =
@@ -186,7 +167,6 @@ cond2 network =
   |> List.take 3
   |> List.map (\(_, val) -> val)
   |> List.product
-
 
 solve : String -> String
 solve str = 
