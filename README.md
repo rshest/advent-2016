@@ -55,8 +55,16 @@ The goal is to use a different programming language for every problem:
     $ kotlinc -script solution.kts input.txt
     ```
     
-9. Elm
+10. Elm
     ```bash
     $ elm-reactor
     ```
     Then, open http://localhost:8000/solution.elm in a browser.
+    
+10. Scala
+    ```bash
+    $ scala solution.scala input.txt
+    ```
+   
+    
+
