@@ -9,3 +9,5 @@ elm-stuff
 index.html
 .idea
 *.iml
+npm-debug.*
+out
