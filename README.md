@@ -61,9 +61,19 @@ The goal is to use a different programming language for every problem:
     ```
     Then, open http://localhost:8000/solution.elm in a browser.
     
-10. Scala
+11. Scala
     ```bash
     $ scala solution.scala input.txt
+    ```
+
+12. Dart
+    ```bash
+    $ dart solution.dart input.txt
+    ```
+
+13. Ruby
+    ```bash
+    $ ruby solution.rb input.txt
     ```
    
     
