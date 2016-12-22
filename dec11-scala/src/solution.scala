@@ -7,22 +7,20 @@ object Solution {
   //  elements are ordered, such that at even positions we have microchips
   //  amd at odd positions we have corresponding generators
   case class Layout(elements: Array[String], maxFloor: Int,
-                    var locations: Array[Int], var curFloor: Int = 1)
+                    locations: Array[Int], curFloor: Int = 1)
   {
     def isAtGoal: Boolean = locations.forall {_ == maxFloor}
 
     def isValidMove(move: Move) : Boolean = {
       val newFloor = curFloor + move.direction
-      if (newFloor <= 0 || newFloor > maxFloor) return false
-      if (locations(move.item1) != curFloor ||
-          locations(move.item2) != curFloor) return false
+
+      def loc(k: Int) =
+        if (k == move.item1 || k == move.item2) newFloor else locations(k)
 
       //  for each generator, check if there is a non-paired microchip on the floor
       for (i <- elements.indices by 2;
            j <- 1 until elements.length by 2 if j != i + 1)
       {
-        def loc(k: Int) =
-          if (k == move.item1 || k == move.item2) newFloor else locations(k)
         if (loc(j) == loc(i) && loc(j - 1) != loc(i)) return false
       }
       true
@@ -33,16 +31,14 @@ object Solution {
       var newLoc = locations.clone()
       newLoc(move.item1) = newFloor
       newLoc(move.item2) = newFloor
-      var res = Layout(elements, maxFloor, newLoc)
-      res.curFloor = newFloor
-      res
+      Layout(elements, maxFloor, newLoc, newFloor)
     }
 
     //  enumerates all possible moves from this layout
     def getPossibleMoves: Seq[Move] = {
-      for (i <- elements.indices;
-           j <- i until elements.length;
-           dir <- List(-1, 1);
+      for (i <- elements.indices if locations(i) == curFloor;
+           j <- i until elements.length if locations(j) == curFloor;
+           dir <- List(-1, 1) if curFloor + dir > 0 && curFloor + dir <= maxFloor;
            move = Move(i, j, dir) if isValidMove(move)) yield move
     }
 
@@ -84,20 +80,22 @@ object Solution {
       {
         def compare(a: Node): Int = a.costEstimate - costEstimate
         override def equals(a: Any): Boolean = layout.equals(a.asInstanceOf[Node].layout)
-        override def hashCode: Int = layout.hashCode
+        override val hashCode: Int = layout.hashCode
         val costEstimate: Int = cost + layout.locations.map(layout.maxFloor - _).sum/2
       }
 
       val startNode = Node(start, null, 0, inQueue = true)
       var pq = mutable.PriorityQueue(startNode)
       var visited = mutable.HashSet(startNode)
-      var iter = 0
+      var iter = 1
       val t0 = System.currentTimeMillis
 
       //  the main A* loop
       while (pq.nonEmpty) {
-        var node = pq.dequeue()
-        while (!node.inQueue) node = pq.dequeue()
+        var node: Node = null
+        do {
+          node = pq.dequeue()
+        } while (!node.inQueue)
         node.inQueue = false
 
         if (iter % 1000 == 0) {
@@ -140,7 +138,7 @@ object Solution {
   }
 
   def main(args: Array[String]): Unit = {
-    val file = if (args.length > 0) args(0) else "input1.txt"
+    val file = if (args.length > 0) args(0) else "test.txt"
     val lines = Source.fromFile(file).getLines.toList
 
     val layout = Layout.parse(lines)
