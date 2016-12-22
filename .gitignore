@@ -9,4 +9,7 @@ elm-stuff
 index.html
 .idea
 *.iml
-/dec12-dart/.analysis_options
+npm-debug.*
+out
+.vscode
+.analysis_options
