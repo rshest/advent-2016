@@ -85,7 +85,7 @@ object Solution {
         def compare(a: Node): Int = a.costEstimate - costEstimate
         override def equals(a: Any): Boolean = layout.equals(a.asInstanceOf[Node].layout)
         override def hashCode: Int = layout.hashCode
-        def costEstimate: Int = cost + layout.locations.map(layout.maxFloor - _).sum/2
+        val costEstimate: Int = cost + layout.locations.map(layout.maxFloor - _).sum/2
       }
 
       val startNode = Node(start, null, 0, inQueue = true)
