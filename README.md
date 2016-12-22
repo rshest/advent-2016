@@ -63,7 +63,8 @@ The goal is to use a different programming language for every problem:
     
 10. Scala
     ```bash
-    $ scala solution.scala input.txt
+    $ scala solution.scala input1.txt
+    $ scala solution.scala input2.txt
     ```
    
     
