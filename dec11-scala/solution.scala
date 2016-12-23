@@ -2,17 +2,17 @@ import scala.io.Source
 import scala.collection.mutable
 
 object Solution {
-  case class Move(item1: Int, item2: Int, direction: Int)
+  case class Move(item1: Byte, item2: Byte, direction: Byte)
 
   //  elements are ordered, such that at even positions we have microchips
   //  amd at odd positions we have corresponding generators
-  case class Layout(elements: Array[String], maxFloor: Int,
-                    locations: Array[Int], curFloor: Int = 1)
+  case class Layout(elements: Array[String], maxFloor: Byte,
+                    locations: Array[Byte], curFloor: Byte = 1)
   {
     def isAtGoal: Boolean = locations.forall {_ == maxFloor}
 
     def isValidMove(move: Move) : Boolean = {
-      val newFloor = curFloor + move.direction
+      val newFloor = (curFloor + move.direction).toByte
 
       def loc(k: Int) =
         if (k == move.item1 || k == move.item2) newFloor else locations(k)
@@ -27,7 +27,7 @@ object Solution {
     }
 
     def applyMove(move: Move): Layout = {
-      val newFloor = curFloor + move.direction
+      val newFloor = (curFloor + move.direction).toByte
       var newLoc = locations.clone()
       newLoc(move.item1) = newFloor
       newLoc(move.item2) = newFloor
@@ -39,14 +39,14 @@ object Solution {
       for (i <- elements.indices if locations(i) == curFloor;
            j <- i until elements.length if locations(j) == curFloor;
            dir <- List(-1, 1) if curFloor + dir > 0 && curFloor + dir <= maxFloor;
-           move = Move(i, j, dir) if isValidMove(move)) yield move
+           move = Move(i.toByte, j.toByte, dir.toByte) if isValidMove(move)) yield move
     }
 
     override def equals(a: Any): Boolean = {
       val rhs = a.asInstanceOf[Layout]
       curFloor == rhs.curFloor && locations.sameElements(rhs.locations)
     }
-
+    override val hashCode: Int = 11 + 17*curFloor + locations.foldLeft(17)(_*31 + _)
     override def toString: String = {
       var res = ""
       for (floor <- maxFloor to 1 by -1) {
@@ -67,10 +67,10 @@ object Solution {
         pattern.findAllIn(line).matchData map { m =>
           val (n, kind) = if (m.group(2) == null) (1, "G") else (2, "M")
           val caption = m.group(n).toUpperCase.slice(0, 2)
-          (s"$caption$kind", floor + 1)
+          (s"$caption$kind", (floor + 1).toByte)
         }
       }.toArray.sorted.unzip
-      new Layout(el, lines.length, loc)
+      new Layout(el, lines.length.toByte, loc)
     }
 
     def solve(start: Layout) : Seq[Layout] = {
@@ -79,14 +79,12 @@ object Solution {
                       var inQueue: Boolean = false) extends Ordered[Node]
       {
         def compare(a: Node): Int = a.costEstimate - costEstimate
-        override def equals(a: Any): Boolean = layout.equals(a.asInstanceOf[Node].layout)
-        override val hashCode: Int = layout.hashCode
         val costEstimate: Int = cost + layout.locations.map(layout.maxFloor - _).sum/2
       }
 
       val startNode = Node(start, null, 0, inQueue = true)
       var pq = mutable.PriorityQueue(startNode)
-      var visited = mutable.HashSet(startNode)
+      var visited = mutable.HashMap(start -> startNode)
       var iter = 1
       val t0 = System.currentTimeMillis
 
@@ -98,7 +96,7 @@ object Solution {
         } while (!node.inQueue)
         node.inQueue = false
 
-        if (iter % 1000 == 0) {
+        if (iter % 10000 == 0) {
           val t = System.currentTimeMillis
           println(s"#$iter. visited: ${visited.size}, queued: ${pq.size}," +
             s" depth: ${node.cost}, time: ${(t - t0)/1000}s")
@@ -117,19 +115,20 @@ object Solution {
 
         val moves = node.layout.getPossibleMoves
         for (move <- moves) {
-          val newNode = Node(node.layout.applyMove(move), node, node.cost + 1, inQueue = true)
-          visited.find(_ == newNode) match {
+          val newLayout = node.layout.applyMove(move)
+          val newNode = Node(newLayout, node, node.cost + 1, inQueue = true)
+          visited.get(newLayout) match {
             case Some(vnode) =>
               if (vnode.cost > newNode.cost) {
                 //  visited it before, update the cost, since it's better
                 vnode.inQueue = false
                 pq += newNode
-                visited += newNode
+                visited(newLayout) = newNode
               }
             case None =>
               //  a new node, never visited before
-              visited += newNode
               pq += newNode
+              visited(newLayout) = newNode
           }
         }
       }
