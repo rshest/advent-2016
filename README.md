@@ -63,8 +63,8 @@ The goal is to use a different programming language for every problem:
     
 11. Scala
     ```bash
-    $ scala src/solution.scala input1.txt
-    $ scala -J"-Xmx2048m" src/solution.scala input2.txt
+    $ scala solution.scala input1.txt
+    $ scala -J"-Xmx2048m" solution.scala input2.txt
     ```
 
 12. Dart
@@ -72,10 +72,19 @@ The goal is to use a different programming language for every problem:
     $ dart solution.dart input.txt
     ```
 
-13. Ruby
+13. Java
+    ```bash
+    $ cd src && javac solution.java && java solution ../input.txt
+    ```
+  
+14. Ruby
     ```bash
     $ ruby solution.rb input.txt
     ```
-   
+
+15. Rust
+    ```bash
+    $ rustc solution.rs && ./solution input.txt
+    
     
 
