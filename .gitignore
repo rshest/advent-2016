@@ -17,5 +17,4 @@ out
 /dec15-rust/.project
 target
 .settings
-
-/dec13-java/src/*.class
+*.class
