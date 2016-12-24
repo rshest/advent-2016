@@ -93,6 +93,11 @@ The goal is to use a different programming language for every problem:
     $ go run solution.go input2.txt
     ```
 
+17. Clojure
+    ```bash
+    $ lein run input.txt
+    ```
+
 ...  
     
     

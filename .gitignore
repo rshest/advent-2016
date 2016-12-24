@@ -23,3 +23,5 @@ dist
 *.cabal
 *.o
 *.hi
+.nrepl-port
+.lein-repl-history
