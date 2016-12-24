@@ -86,9 +86,17 @@ The goal is to use a different programming language for every problem:
     ```bash
     $ ghc solution.hs && ./solution input1.txt && ./solution input2.txt
     ```
+
+16. Go
+    ```bash
+    $ go run solution.go input1.txt
+    $ go run solution.go input2.txt
+    ```
+
+...  
     
     
-16. Rust
+18. Rust
     ```bash
     $ rustc solution.rs && ./solution input.txt
     ```
