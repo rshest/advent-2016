@@ -82,9 +82,15 @@ The goal is to use a different programming language for every problem:
     $ ruby solution.rb input.txt
     ```
 
-15. Rust
+15. Haskell
+    ```bash
+    $ ghc solution.hs && ./solution input.txt
+    ```
+    
+    
+16. Rust
     ```bash
     $ rustc solution.rs && ./solution input.txt
-    
+    ```
     
 
