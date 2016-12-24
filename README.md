@@ -84,7 +84,7 @@ The goal is to use a different programming language for every problem:
 
 15. Haskell
     ```bash
-    $ ghc solution.hs && ./solution input.txt
+    $ ghc solution.hs && ./solution input1.txt && ./solution input2.txt
     ```
     
     

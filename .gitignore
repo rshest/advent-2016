@@ -18,3 +18,8 @@ out
 target
 .settings
 *.class
+dist
+.stack-work
+*.cabal
+*.o
+*.hi
