@@ -105,5 +105,12 @@ The goal is to use a different programming language for every problem:
     ```bash
     $ rustc solution.rs && ./solution input.txt
     ```
-    
+
+... 
+
+
+24. Ceylon
+    ```bash    
+    $ ceylon run --compile=force solution
+    ```
 

@@ -25,3 +25,5 @@ dist
 *.hi
 .nrepl-port
 .lein-repl-history
+.ceylon
+modules
