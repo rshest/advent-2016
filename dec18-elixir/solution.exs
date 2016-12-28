@@ -1,0 +1,2 @@
+
+IO.puts System.argv

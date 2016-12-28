@@ -98,13 +98,25 @@ The goal is to use a different programming language for every problem:
     $ lein run input.txt
     ```
 
-...  
-    
-    
-18. Rust
+
+18. Elixir
     ```bash
-    $ rustc solution.rs && ./solution input.txt
+    $ elixir solution.exs
     ```
+
+
+20. C#
+     ```bash
+     $ mcs Solution.cs && mono Solution.exe
+     ```
+
+ ...  
+     
+     
+22. Rust
+     ```bash
+     $ rustc solution.rs && ./solution input.txt
+     ```
 
 ... 
 

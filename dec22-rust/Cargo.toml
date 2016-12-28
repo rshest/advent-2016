@@ -1,0 +1,10 @@
+[package]
+name = "dec13"
+version = "0.1.0"
+authors = ["Ruslan Shestopalyuk <rushbits@gmail.com>"]
+
+[[bin]]
+name = "solution"
+path = "solution.rs"
+
+[dependencies]
