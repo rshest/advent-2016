@@ -27,3 +27,7 @@ dist
 .lein-repl-history
 .ceylon
 modules
+bin
+obj
+*.user
+*.suo
