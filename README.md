@@ -27,14 +27,14 @@ The goal is to use a different programming language for every problem:
     ```bash
     $ nim c --opt:speed solution.nim && ./solution < input.txt
     ```
-    
+
 5. TypeScript
     ```bash
     $ npm install @types/node
     $ npm install crypto
     $ tsc --lib es6 solution.ts && node solution.js < input.txt
     ```
-    
+
 6. Julia
     ```bash
     $ julia solution.jl input.txt
@@ -44,7 +44,7 @@ The goal is to use a different programming language for every problem:
     ```bash
     $ fsi solution.fsx input.txt
     ```
-    
+
 8. Lua
     ```bash
     $ lua5.1 solution.lua input.txt
@@ -54,13 +54,13 @@ The goal is to use a different programming language for every problem:
     ```bash
     $ kotlinc -script solution.kts input.txt
     ```
-    
+
 10. Elm
     ```bash
     $ elm-reactor
     ```
     Then, open http://localhost:8000/solution.elm in a browser.
-    
+
 11. Scala
     ```bash
     $ scala solution.scala input1.txt
@@ -76,7 +76,7 @@ The goal is to use a different programming language for every problem:
     ```bash
     $ cd src && javac solution.java && java solution ../input.txt
     ```
-  
+
 14. Ruby
     ```bash
     $ ruby solution.rb input.txt
@@ -98,12 +98,15 @@ The goal is to use a different programming language for every problem:
     $ lein run input.txt
     ```
 
-
 18. Elixir
     ```bash
     $ elixir solution.exs
     ```
 
+19. Crystal
+    ```bash
+    $ crystal solution.cr
+    ```
 
 20. C#
      ```bash
@@ -111,14 +114,14 @@ The goal is to use a different programming language for every problem:
      ```
 
  ...  
-     
-     
+
+
 22. Rust
      ```bash
      $ rustc solution.rs && ./solution input.txt
      ```
 
-... 
+...
 
 
 24. Ceylon
@@ -126,3 +129,7 @@ The goal is to use a different programming language for every problem:
     $ ceylon run --compile=force solution
     ```
 
+25. Swift
+    ```bash    
+    $ swift solution.swift input.txt
+    ```
