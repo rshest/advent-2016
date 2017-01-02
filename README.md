@@ -100,7 +100,8 @@ The goal is to use a different programming language for every problem:
 
 18. Elixir
     ```bash
-    $ elixir solution.exs
+    $ elixir solution.exs input.txt 40
+    $ elixir solution.exs input.txt 400000
     ```
 
 19. Crystal
