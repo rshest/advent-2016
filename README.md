@@ -125,7 +125,8 @@ The goal is to use a different programming language for every problem:
 
 22. D
     ```bash
-    $ rdmd solution input.txt
+    $ rdmd -release solution input.txt 7
+    $ rdmd -release solution input.txt 12
     ```
 
 
