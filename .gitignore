@@ -32,3 +32,5 @@ bin
 obj
 *.user
 *.suo
+*.ali
+/dec21-ada/solution

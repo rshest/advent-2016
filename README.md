@@ -113,8 +113,10 @@ The goal is to use a different programming language for every problem:
      $ mcs Solution.cs && mono Solution.exe
      ```
 
- ...  
-
+21. Ada
+    ```bash
+    $ gnatmake -gnata solution.adb && ./solution
+    ```
 
 22. Rust
      ```bash
