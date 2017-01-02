@@ -123,7 +123,10 @@ The goal is to use a different programming language for every problem:
      $ rustc solution.rs && ./solution input.txt
      ```
 
-...
+22. D
+    ```bash
+    $ rdmd solution input.txt
+    ```
 
 
 24. Ceylon
