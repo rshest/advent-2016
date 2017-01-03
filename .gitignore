@@ -34,3 +34,4 @@ obj
 *.suo
 *.ali
 /dec21-ada/solution
+Cargo.lock
