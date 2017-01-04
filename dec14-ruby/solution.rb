@@ -29,10 +29,12 @@ end
 
 seed = File.read(ARGV[0] || "input.txt")
 
+# part 1
 collector1 = Keyer.new(seed)
 res1 = collector1.collect(64)
 puts "Index for 64th key (stretch 0): #{res1[-1]}" 
 
+# part 2
 collector2 = Keyer.new(seed, 2016)
 res2 = collector2.collect(64)
 puts "Index for 64th key (stretch 2016): #{res2[-1]}" 

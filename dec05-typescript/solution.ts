@@ -49,6 +49,7 @@ function computePassword2(keyPrefix: string, numLeadingZeros: number) : string {
   return password.join('');
 }
 
+
 const file = process.argv[2] || 'input.txt';
 const prefix = fs
   .readFileSync(file)

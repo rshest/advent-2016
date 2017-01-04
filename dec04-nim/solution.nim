@@ -48,6 +48,7 @@ proc getIdOfEncryptedRoom(lines: seq[string], pattern: string) : int =
       return id
   return 0
 
+
 let lines = toSeq(stdin.lines)
 
 echo format("Sum of the sector IDs of the real rooms: $1", 

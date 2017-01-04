@@ -22,7 +22,8 @@ class Maze(Integer width, Integer height,
     {
       shared actual default Boolean equals(Object that) {
         if (is Node that) {
-          return position == that.position && checkpoints.equals(that.checkpoints);
+          return position == that.position && 
+            checkpoints.equals(that.checkpoints);
         }
         return false;
       }

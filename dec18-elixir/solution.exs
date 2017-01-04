@@ -3,12 +3,10 @@ import Enum
 
 defmodule Solution do
   def apply_rules(str) do
-    case join(str) do    
-      "^^." -> "^"
-      ".^^" -> "^"
-      "^.." -> "^"
-      "..^" -> "^"
-      _     -> "."
+    if join(str) in ["^^.", ".^^", "^..", "..^"] do 
+      "^" 
+    else 
+      "." 
     end
   end
   

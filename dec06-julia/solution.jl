@@ -1,12 +1,13 @@
 function get_hist(arr)
-    dict = Dict{String,Int32}()
-    for c in arr
-        dict[c] = get(dict, c, 0) + 1
-    end
-    pairs = collect(dict)
-    sort!(pairs, lt = (a, b) -> b.second < a.second)
-    pairs
+  dict = Dict{String,Int32}()
+  for c in arr
+    dict[c] = get(dict, c, 0) + 1
+  end
+  pairs = collect(dict)
+  sort!(pairs, lt = (a, b) -> b.second < a.second)
+  pairs
 end
+
 
 get_most_freq(x) = x[1].first
 get_least_freq(x) = x[end].first

@@ -17,4 +17,5 @@ CONSTANT: INPUT-FILE "vocab:dec03-factor/input.txt"
   dup count-valid "Valid triangles 1: %d\n" printf
   regroup-triples count-valid "Valid triangles 2: %d\n" printf ;
 
+
 MAIN: main

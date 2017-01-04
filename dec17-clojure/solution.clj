@@ -8,6 +8,7 @@
 (def offsets [[0 -1] [0 1] [-1 0] [1 0]])
 
 
+; MD5 implementation from Java
 (defn md5 [str]
     (->> (doto (java.security.MessageDigest/getInstance "MD5")
                (.reset)
@@ -15,20 +16,24 @@
          (.digest)
          (map (partial format "%02x"))))
 
-
+; check if the character is a "can move" one
 (defn can-move [c]
   (<= (int \b) (int c) (int \f)))
 
+; get opened doors from the md5 hash of the path
 (defn opened-doors [seed path]
     (->> (str seed path)
          (md5) (take 2) (join "") (map can-move)))
 
+; check if the room is inside the boundaries 
 (defn in-bounds [[x y]]
   (and (< -1 x width) (< -1 y height)))
 
+; check if reached the target
 (defn at-target [[x y]]
   (and (= width  (inc x)) (= height (inc y))))
 
+; main search function
 (defn find-paths [seed start-pos]
   (loop [queue [[start-pos ""]]
          paths []]

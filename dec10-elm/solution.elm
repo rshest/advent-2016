@@ -168,6 +168,7 @@ cond2 network =
   |> List.map (\(_, val) -> val)
   |> List.product
 
+
 solve : String -> String
 solve str = 
   let

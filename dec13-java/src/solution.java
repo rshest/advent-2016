@@ -159,10 +159,12 @@ public class solution {
     ArrayList<Point> solution = solver.solve();
     System.out.println(printMaze(tx + 1, ty + 1, seed, solution));
 
-    System.out.println(String.format("Seed %1$d, number of steps (%2$d, %3$d) -> (%4$d, %5$d): %6$d",
-            seed, start.x, start.y, target.x, target.y, solution.size() - 1));
+    System.out.println(String.format(
+      "Seed %1$d, number of steps (%2$d, %3$d) -> (%4$d, %5$d): %6$d",
+      seed, start.x, start.y, target.x, target.y, solution.size() - 1));
 
-    System.out.println(String.format("Number of reachable in %1$d steps: %2$d.",
-            maxSteps, solver.countReachableNodes(maxSteps)));
+    System.out.println(String.format(
+      "Number of reachable in %1$d steps: %2$d.",
+      maxSteps, solver.countReachableNodes(maxSteps)));
   }
 }

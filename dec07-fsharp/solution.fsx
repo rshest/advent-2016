@@ -44,6 +44,7 @@ let supportsSSL(str: string): bool =
       inner |> Seq.exists (fun (s:String) -> s.Contains bab))
   Seq.length abas > 0
 
+
 // read input data
 let argv = Environment.GetCommandLineArgs()
 let fname = if argv.Length > 2 then argv.[2] else "input.txt"

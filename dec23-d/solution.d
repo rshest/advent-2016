@@ -8,8 +8,8 @@ enum OpCode {
 }
 
 struct Argument {
-  int   value;    //  register index if register  
   bool  register;
+  int   value;    //  register index if register  
 }
 
 struct Operation {
@@ -17,7 +17,7 @@ struct Operation {
   Argument arg1, arg2;
 }
 
-Argument parseArg(const ref string str) {
+Argument parse_arg(const ref string str) {
   bool register = false;
   int val = 0;
   char c = str[0];
@@ -30,7 +30,7 @@ Argument parseArg(const ref string str) {
   return Argument(val, register);
 }
 
-Operation parseOp(char[] str) {
+Operation parse_op(char[] str) {
   string[] parts = split(to!string(str), " ");
   if (parts.length < 2 || parts.length > 3) {
     return Operation(OpCode.ERR);
@@ -43,12 +43,12 @@ Operation parseOp(char[] str) {
   }
 
   Argument arg1, arg2;
-  arg1 = parseArg(parts[1]);
-  if (parts.length > 2) arg2 = parseArg(parts[2]);
+  arg1 = parse_arg(parts[1]);
+  if (parts.length > 2) arg2 = parse_arg(parts[2]);
   return Operation(code, arg1, arg2);
 }
 
-void toggleOp(ref Operation op) {
+void apply_toggle(ref Operation op) {
   if (op.code == OpCode.INC) {
     op.code = OpCode.DEC;
   } else if (op.code == OpCode.DEC || op.code == OpCode.TGL) {
@@ -93,7 +93,7 @@ void eval(Operation[] initOps, int[] registers) {
       case OpCode.TGL:
         int ipt = *arg(op.arg1) + ip;
         if (ipt >= 0 && ipt < ops.length) {
-          toggleOp(ops[ipt]);
+          apply_toggle(ops[ipt]);
         }
       break;
       default: break;
@@ -107,7 +107,7 @@ void main(string[] args) {
   int initVal = args.length > 2 ? to!int(args[2]) : 7;
 
   auto file = File(fname);
-  auto ops = array(file.byLine().map!parseOp);
+  auto ops = array(file.byLine().map!parse_op);
 
   int[NUM_REGISTERS] reg;
   reg[0] = initVal;

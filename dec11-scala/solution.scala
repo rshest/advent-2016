@@ -15,7 +15,8 @@ object Solution {
       val newFloor = (curFloor + move.direction).toByte
 
       def loc(k: Int) =
-        if (k == move.item1 || k == move.item2) newFloor else locations(k)
+        if (k == move.item1 || k == move.item2) newFloor 
+        else locations(k)
 
       //  for each generator, check if there is a non-paired microchip on the floor
       for (i <- elements.indices by 2;

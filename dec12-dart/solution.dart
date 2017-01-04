@@ -83,6 +83,7 @@ List<int> eval(List<Operation> ops) {
   return reg;
 }
 
+
 main(List<String> args) {
   String file = "test.txt";
   if (args.length > 0) file = args[0];

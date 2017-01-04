@@ -56,6 +56,7 @@ func solve(seed string, length int) string {
 	return s
 }
 
+
 func main() {
 	fname := "input1.txt"
 	if len(os.Args) > 1 {

@@ -13,6 +13,7 @@ willPass t (idx:numPos:phase:startPos:_) =
 passAllTimes :: [[Int]] -> [Int]
 passAllTimes disks = filter (\t -> all (willPass t) disks) [0..]
 
+
 main = do
   args <- getArgs
   let fname = if length args > 0 then args !! 0 else "input1.txt"

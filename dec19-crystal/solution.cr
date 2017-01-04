@@ -1,10 +1,9 @@
 
 class Elf
   @right : self|Nil = nil
-  @left : self|Nil = nil
+  @left  : self|Nil = nil
 
-  def initialize(@index : Int32)
-  end
+  def initialize(@index : Int32) end
 
   getter right
   setter right

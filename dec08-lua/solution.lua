@@ -78,6 +78,7 @@ function printField(field)
   end
 end
 
+
 -- parse command line arguments
 local file = arg[1] or 'input.txt'
 local FIELD_WIDTH = tonumber(arg[2]) or 50

@@ -68,6 +68,8 @@ fn find_blank(nodes: &Vec<Node>) -> Coord {
 }
 
 fn find_path(nodes: &Vec<Node>, from: Coord, to: Coord) -> Vec<Coord> {
+
+  //  search state structure
   #[derive(Copy, Clone)]
   struct State {
     cost: u32,
@@ -78,11 +80,10 @@ fn find_path(nodes: &Vec<Node>, from: Coord, to: Coord) -> Vec<Coord> {
   }
 
   impl Ord for State {
-    fn cmp(&self, other: &State) -> Ordering {
-      other.cost.cmp(&self.cost)
+    fn cmp(&self, other: &State) -> Ordering { 
+      other.cost.cmp(&self.cost) 
     }
   }
-
   impl PartialOrd for State {
     fn partial_cmp(&self, other: &State) -> Option<Ordering> {
       Some(self.cmp(other))
@@ -91,10 +92,10 @@ fn find_path(nodes: &Vec<Node>, from: Coord, to: Coord) -> Vec<Coord> {
 
   impl  PartialEq for State {
     fn eq(&self, other: &State) -> bool {
-      self.blank_pos == other.blank_pos && self.data_pos == other.data_pos
+      self.blank_pos == other.blank_pos && 
+      self.data_pos == other.data_pos
     }
   }
-
   impl Eq for State {}
 
   impl Hash for State {
@@ -112,7 +113,8 @@ fn find_path(nodes: &Vec<Node>, from: Coord, to: Coord) -> Vec<Coord> {
     index: 0
   };
 
-  let node_reg: HashMap<Coord, &Node> = nodes.iter().map(|n| (n.pos.clone(), n)).collect();
+  let node_reg: HashMap<Coord, &Node> = 
+    nodes.iter().map(|n| (n.pos.clone(), n)).collect();
 
   let mut states = Vec::new();
   let mut open = BinaryHeap::new();

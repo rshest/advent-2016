@@ -69,7 +69,9 @@ procedure Solution is
 
   end Operations;
 
+  -- Operations implementation
   package body Operations is
+    -- helper function for post-conditions
     function ApplyOp(Op : Operation; Password : Unbounded_String) return Unbounded_String is
       P : Unbounded_String := Password;
     begin
@@ -77,6 +79,7 @@ procedure Solution is
       return P;
     end ApplyOp;
 
+    --  rotates string N characters (left if negative)
     procedure RotateString(Str: in out Unbounded_String; N : Integer) is
       P : Unbounded_String := Str;
       Len : Integer := Length(Str);
@@ -184,7 +187,6 @@ procedure Solution is
     begin
       Put_Line("Error operation");
     end Apply;
-
   end Operations;
 
   use Operations;

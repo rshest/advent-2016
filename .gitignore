@@ -35,3 +35,4 @@ obj
 *.ali
 /dec21-ada/solution
 Cargo.lock
+notes.md

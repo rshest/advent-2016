@@ -47,10 +47,10 @@ func isProducingClockSignal(ops: [Op], a: Int,
   var reg: [Int] = Array(repeating: 0, count: NUM_REGISTERS)
   reg[0] = a
 
-  var nip = 0
-  var ip = 0
-  var len = 0
-  var curSig = 0
+  var ip = 0        // instruction pointer
+  var numSteps = 0  // number of instructions executed in total
+  var len = 0       // length of the signal produced so far
+  var curSig = 0    // current "correct" signal value
 
   let getArg = { (arg: Arg) -> Int in
     switch arg {
@@ -89,8 +89,8 @@ func isProducingClockSignal(ops: [Op], a: Int,
       default: print("Error operation.")
     }
     ip += 1
-    nip += 1
-    if nip >= maxSteps {
+    numSteps += 1
+    if numSteps >= maxSteps {
       return false
     }
   }
